@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Abstract API Phone Validation",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Phone Validation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Validate and verify a phone number.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://phonevalidation.abstractapi.com/v1/?api_key={{apiKey}}&phone=+14152007986",
+            "params": [
+              { "name": "api_key", "value": "{{apiKey}}", "type": "query", "description": "Your Abstract API Phone Validation API key." },
+              { "name": "phone", "value": "+14152007986", "type": "query", "description": "The phone number to validate, ideally in E.164 format." }
+            ]
+          },
+          "docs": "Validates a single phone number and returns validity, local and international formats, country, registered location, line type, and carrier."
+        },
+        {
+          "info": { "name": "Validate a number with a country hint.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://phonevalidation.abstractapi.com/v1/?api_key={{apiKey}}&phone=4152007986&country=US",
+            "params": [
+              { "name": "api_key", "value": "{{apiKey}}", "type": "query", "description": "Your Abstract API Phone Validation API key." },
+              { "name": "phone", "value": "4152007986", "type": "query", "description": "A phone number without an international dialing code." },
+              { "name": "country", "value": "US", "type": "query", "description": "Optional ISO 3166-1 alpha-2 country code used to interpret the number." }
+            ]
+          },
+          "docs": "Validates a number supplied without a country code, using the optional country parameter as a hint. The country parameter is modeled from Abstract API documentation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

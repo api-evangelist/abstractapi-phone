@@ -1,0 +1,50 @@
+generated: '2026-07-12'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: abstractapi.com
+  https: true
+  tls_version: TLSv1.3
+  cert_not_before: Jun 21 20:00:38 2026 GMT
+  cert_expires: Sep 19 20:00:37 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  server: cloudflare
+  x_frame_options: SAMEORIGIN
+- host: www.abstractapi.com
+  https: true
+  tls_version: TLSv1.3
+  cert_not_before: Jun 12 06:13:04 2026 GMT
+  cert_expires: Sep 10 07:12:58 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  server: cloudflare
+  x_frame_options: SAMEORIGIN
+- host: phonevalidation.abstractapi.com
+  https: true
+  tls_version: TLSv1.2
+  cert_not_before: Feb 16 00:00:00 2026 GMT
+  cert_expires: Mar 16 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  server: nginx/1.18.0 (Ubuntu)
+  x_frame_options: DENY
+  x_content_type_options: nosniff
+  referrer_policy: same-origin
+  allow_methods: GET, HEAD, OPTIONS
+domains:
+- domain: abstractapi.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: true
+  dmarc_policy: none
+notes: >-
+  Marketing/docs hosts (abstractapi.com, www.abstractapi.com) sit behind
+  Cloudflare on TLSv1.3 with HSTS. The API host
+  (phonevalidation.abstractapi.com) is served directly by nginx/1.18.0 on
+  TLSv1.2 with HSTS (includeSubDomains), X-Frame-Options DENY,
+  X-Content-Type-Options nosniff, and a restrictive Allow of GET, HEAD, OPTIONS.
+  No CAA records, no SPF record, and DMARC is present only at p=none; DNSSEC is
+  not enabled on abstractapi.com. Probed live 2026-07-12.

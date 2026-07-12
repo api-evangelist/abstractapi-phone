@@ -1,0 +1,53 @@
+{
+  "info": {
+    "name": "Abstract API Phone Validation",
+    "description": "Validate and verify a phone number with Abstract API's Phone Number Validation & Verification API. A single GET endpoint returns validity, local and international formats, country, registered location, line type, and carrier. Base URL: https://phonevalidation.abstractapi.com/v1. Authenticated with an api_key query parameter; the number is passed via the phone query parameter in E.164 format. Endpoint, method, and auth live-confirmed 2026-07-12.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://phonevalidation.abstractapi.com/v1", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Phone Validation",
+      "item": [
+        {
+          "name": "Validate and verify a phone number",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/?api_key={{apiKey}}&phone=+14152007986",
+              "host": ["{{baseUrl}}"],
+              "path": [""],
+              "query": [
+                { "key": "api_key", "value": "{{apiKey}}", "description": "Your Abstract API Phone Validation API key." },
+                { "key": "phone", "value": "+14152007986", "description": "The phone number to validate, ideally in E.164 format." }
+              ]
+            },
+            "description": "Validates a single phone number and returns validity, local and international formats, country, registered location, line type, and carrier."
+          }
+        },
+        {
+          "name": "Validate a number with a country hint",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/?api_key={{apiKey}}&phone=4152007986&country=US",
+              "host": ["{{baseUrl}}"],
+              "path": [""],
+              "query": [
+                { "key": "api_key", "value": "{{apiKey}}", "description": "Your Abstract API Phone Validation API key." },
+                { "key": "phone", "value": "4152007986", "description": "A phone number without an international dialing code." },
+                { "key": "country", "value": "US", "description": "Optional ISO 3166-1 alpha-2 country code used to interpret the number." }
+              ]
+            },
+            "description": "Validates a number supplied without a country code, using the optional country parameter as a hint. The country parameter is modeled from Abstract API documentation."
+          }
+        }
+      ]
+    }
+  ]
+}

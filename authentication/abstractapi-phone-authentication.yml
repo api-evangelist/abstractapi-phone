@@ -1,0 +1,22 @@
+generated: '2026-07-12'
+method: derived
+source: openapi/abstractapi-phone-openapi.yml
+summary:
+  types:
+  - apiKey
+schemes:
+- name: apiKeyQuery
+  type: apiKey
+  in: query
+  keyName: api_key
+  description: >-
+    Abstract API authenticates by an API key passed as the `api_key` query
+    parameter on the request, e.g.
+    https://phonevalidation.abstractapi.com/v1/?api_key=YOUR_API_KEY&phone=+14152007986.
+    Each Abstract API product (phone validation, email validation, IP
+    geolocation, etc.) issues its own distinct key. Live-confirmed 2026-07-12: a
+    missing or invalid key returns HTTP 401 with an "Invalid API key provided"
+    error.
+  sources:
+  - openapi/abstractapi-phone-openapi.yml
+  - https://www.abstractapi.com/api/phone-validation-api

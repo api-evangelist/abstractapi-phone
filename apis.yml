@@ -1,0 +1,76 @@
+aid: abstractapi-phone
+url: https://raw.githubusercontent.com/api-evangelist/abstractapi-phone/refs/heads/main/apis.yml
+name: Abstract API Phone Validation
+kind: company
+description: >-
+  Abstract API's Phone Number Validation & Verification API validates and
+  verifies a phone number in a single REST request. Given a number (ideally in
+  E.164 format) it returns whether the number is valid, its local and
+  international formats, the country, the registered location, the line type
+  (mobile, landline, VoIP, and more), and the carrier - useful for form
+  validation, lead scoring, fraud prevention, and cleaning phone data. The
+  endpoint is a single authenticated GET call with the API key passed as a query
+  parameter, and Abstract offers a free tier alongside paid plans. Phone
+  Validation is one product in the broader Abstract API suite, which also
+  includes email validation, IP geolocation, company enrichment, and other data
+  APIs; each product has its own host and its own API key.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Number Verification
+- Phone Validation
+- Phone Number
+- Phone Number Lookup
+- Verification
+- Carrier Lookup
+- Line Type
+- Data Validation
+created: '2026-07-12'
+modified: '2026-07-12'
+specificationVersion: '0.19'
+apis:
+- aid: abstractapi-phone:abstractapi-phone-validation-api
+  name: Abstract API Phone Validation API
+  tags:
+  - Phone Validation
+  - Number Verification
+  - Carrier Lookup
+  - Line Type
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.abstractapi.com/api/phone-validation-api
+  baseURL: https://phonevalidation.abstractapi.com/v1
+  properties:
+  - url: https://www.abstractapi.com/api/phone-validation-api
+    type: Documentation
+  - url: https://www.abstractapi.com/api/phone-validation-api
+    type: APIReference
+  - url: openapi/abstractapi-phone-openapi.yml
+    type: OpenAPI
+  description: >-
+    Single GET endpoint that validates and verifies a phone number and returns
+    validity, local and international formats, country, registered location,
+    line type, and carrier. Authenticated with an api_key query parameter;
+    number is supplied via the phone query parameter in E.164 format. Endpoint,
+    method, and auth were live-confirmed 2026-07-12; response fields are grounded
+    in Abstract API documentation and official SDKs.
+common:
+- type: DomainSecurity
+  url: security/abstractapi-phone-domain-security.yml
+- type: Authentication
+  url: authentication/abstractapi-phone-authentication.yml
+- type: GitHubOrganization
+  url: https://github.com/abstractapi
+- type: LinkedIn
+  url: https://www.linkedin.com/company/abstract-api
+- type: Website
+  url: https://www.abstractapi.com
+- type: Documentation
+  url: https://www.abstractapi.com/api/phone-validation-api
+- type: Plans
+  url: plans/abstractapi-phone-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/abstractapi-phone-rate-limits.yml
+- type: FinOps
+  url: finops/abstractapi-phone-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

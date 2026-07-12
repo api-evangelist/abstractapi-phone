@@ -1,0 +1,50 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Abstract API Phone Validation
+providerId: abstractapi-phone
+created: '2026-07-12'
+modified: '2026-07-12'
+reconciled: false
+tags:
+- Phone Validation
+- Number Verification
+- Rate Limiting
+- Quotas
+description: >-
+  The Abstract API Phone Validation API applies two overlapping limits: a
+  per-second throughput cap and a monthly request quota tied to your plan.
+  Abstract documents a throughput limit of 3 requests/second across tiers
+  (including the free tier). The monthly request allowance is set by the plan -
+  100 requests/month on the free tier, higher on paid tiers. Exceeding either
+  limit returns an HTTP 429. Values here are drawn from Abstract API's public
+  documentation and are not reconciled against a live account.
+notes: >-
+  Verify the current per-second rate and monthly allowances on the Abstract API
+  pricing/documentation pages during reconciliation. Clients should implement
+  retry with exponential backoff and honor any Retry-After header on 429
+  responses.
+sources:
+- https://www.abstractapi.com/api/phone-validation-api
+- https://www.abstractapi.com/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Second
+  scope: account
+  metric: requests
+  limit: 3 per second
+  notes: Documented throughput cap shared across free and paid tiers.
+- name: Monthly Request Quota
+  scope: account
+  metric: requests
+  limit: per plan (100/month on free tier; higher on paid tiers)
+  notes: Set by the selected plan's monthly request allowance.
+policies:
+- name: Backoff Strategy
+  description: On a 429 response, back off with exponential delay and jitter and honor any Retry-After header before retrying.
+- name: Quota Reset
+  description: Monthly request allowances reset on the plan's monthly billing cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

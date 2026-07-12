@@ -1,0 +1,105 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Abstract API Phone Validation
+providerId: abstractapi-phone
+created: '2026-07-12'
+modified: '2026-07-12'
+reconciled: false
+tags:
+- Phone Validation
+- Number Verification
+- Data Validation
+- Plans
+description: >-
+  Abstract API's Phone Validation API is offered on a freemium model: a
+  free-forever tier plus paid monthly plans that scale by monthly request
+  volume, with a discount for annual billing. The free tier requires no credit
+  card. All tiers share the same single validation endpoint and a 3
+  requests/second throughput limit; higher tiers raise the included monthly
+  request allowance and (on Abstract's higher-featured plans) unlock additional
+  data such as messaging, registration, and risk signals. The exact per-plan
+  request volumes and dollar amounts below are drawn from Abstract API's public
+  pricing page and are NOT reconciled against a live billing account; verify
+  current tiers and prices on the pricing page.
+notes: >-
+  Abstract prices each API product separately - a Phone Validation plan does not
+  cover Abstract's other APIs (email validation, IP geolocation, etc.). Pricing
+  observed 2026-07-12: free = 100 requests/month; paid plans commonly start at
+  $19/month (approx $17/month billed annually) with selectable monthly request
+  volumes; Enterprise is custom. Treat specific numbers as modeled until
+  reconciled.
+sources:
+- https://www.abstractapi.com/api/phone-validation-api
+- https://www.abstractapi.com/pricing
+plans:
+- id: abstractapi-phone-free
+  name: Free
+  type: free
+  description: >-
+    Free-forever tier for evaluation and low-volume use. No credit card
+    required. Includes the full validation/verification response subject to the
+    monthly request allowance.
+  entries:
+  - label: Included Requests
+    name: free_requests
+    type: usage
+    metric: requests
+    limit: 100
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '0.00'
+    userMultiplied: false
+  elements:
+  - name: Phone Validation Endpoint
+  - name: Carrier and Line Type
+  - name: 3 Requests/Second
+- id: abstractapi-phone-paid
+  name: Paid (Volume Tiers)
+  type: paid
+  description: >-
+    Paid monthly plans that scale the included monthly request allowance
+    (commonly from several thousand up to 150,000+ requests/month depending on
+    the selected volume and feature set). Billed monthly, with a discount for
+    annual commitment. Prices and volumes are modeled from the public pricing
+    page and not reconciled.
+  entries:
+  - label: Included Requests
+    name: paid_requests
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from ~$19/month (approx $17/month billed annually); volume-tiered - see pricing page
+    userMultiplied: false
+  elements:
+  - name: Higher Monthly Request Allowance
+  - name: 3 Requests/Second
+  - name: Additional Signals on Higher Tiers (messaging, registration, risk)
+- id: abstractapi-phone-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom plan for high-volume usage with flexible request volumes, a dedicated
+    account manager, and an enhanced SLA. Contact Abstract API.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Request Volumes
+  - name: Dedicated Account Manager
+  - name: Enhanced SLA
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

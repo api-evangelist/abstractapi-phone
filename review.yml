@@ -1,0 +1,78 @@
+aid: abstractapi-phone
+name: Abstract API Phone Validation
+review:
+  question: Does Abstract API Phone Validation expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-12'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Abstract API's Phone Validation product is
+    a single synchronous request/response REST endpoint over HTTPS
+    (GET https://phonevalidation.abstractapi.com/v1/). There is no server-push
+    transport - no WebSocket (ws:// or wss://) and no Server-Sent Events (SSE) -
+    on the Phone Validation API to model. WebSocket PRECISION applies: the answer
+    is true only for a real wss:// surface, and none exists here.
+findings:
+  summary: |
+    Abstract API Phone Validation does not publish a documented public WebSocket
+    API. It is a single GET REST endpoint that validates and verifies one phone
+    number per request and returns validity, formats, country, location, line
+    type, and carrier. The endpoint path (GET /v1/ on host
+    phonevalidation.abstractapi.com), the GET-only method, and API-key-by-query
+    authentication were live-confirmed on 2026-07-12. No realtime, bidirectional,
+    or streaming WebSocket endpoint is documented for this product.
+  liveProbe: |
+    On 2026-07-12, GET https://phonevalidation.abstractapi.com/v1/?api_key=test&phone=+14152007986
+    returned HTTP 401 with {"error":{"message":"Invalid API key provided.",
+    "code":"unauthorized"}}, confirming the endpoint is live and requires a valid
+    api_key. An OPTIONS/HEAD probe returned "Allow: GET, HEAD, OPTIONS",
+    confirming GET is the only functional verb. Server is nginx/1.18.0 (Ubuntu)
+    over TLSv1.2 with HSTS enabled. No WebSocket upgrade path is advertised.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://phonevalidation.abstractapi.com/v1
+      documented: true
+      note: Single GET endpoint. api_key and phone passed as query parameters. Live-confirmed 2026-07-12.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere for the Phone Validation API as of the review date.
+  endpointsConfirmed:
+    - GET https://phonevalidation.abstractapi.com/v1/?api_key={key}&phone={e164_number}
+  endpointsConfirmedNote: |
+    The single endpoint above - its path, GET method, and api_key/phone query
+    parameters - is confirmed by live probe and Abstract API documentation. The
+    optional `country` query parameter and the response field set (phone, valid,
+    format.local, format.international, country.code/name/prefix, location, type,
+    carrier) are modeled from Abstract API documentation and official SDK field
+    lists; exact response values were not exercised because a valid API key was
+    not used.
+  endpointsModeled:
+    - GET https://phonevalidation.abstractapi.com/v1/?api_key={key}&phone={e164_number}&country={iso2}
+  suiteNote: |
+    Abstract API sells many separate products (email validation, IP geolocation,
+    company enrichment, and more), each on its own host with its own API key, and
+    a newer "Phone Intelligence" API exists on a distinct host
+    (phoneintelligence.abstractapi.com) with a richer response. This entry is
+    scoped to the classic Phone Validation product only; the other products'
+    endpoints were not modeled here.
+sources:
+  - url: https://www.abstractapi.com/api/phone-validation-api
+    type: Documentation
+    note: Product/documentation page for the Phone Validation & Verification API. Lists free tier, pricing, and response fields.
+  - url: https://phonevalidation.abstractapi.com/v1/
+    type: APIReference
+    note: Live production endpoint. Live-probed 2026-07-12 (401 on bad key; Allow header GET, HEAD, OPTIONS). REST only, no WebSocket.
+  - url: https://github.com/abstractapi/python-phone-validation
+    type: SourceCode
+    note: Official Python SDK; confirms request shape and response field names (number, valid, local_format, international_format, country_*, registered_location, carrier, line_type).
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists, and the Phone Validation API is a
+    single synchronous request/response REST endpoint with no server-push
+    transport. No AsyncAPI document was created because there is nothing
+    stream-oriented on this API to model.

@@ -1,0 +1,78 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Abstract API Phone Validation
+providerId: abstractapi-phone
+created: '2026-07-12'
+modified: '2026-07-12'
+reconciled: false
+tags:
+- Phone Validation
+- Number Verification
+- Data Validation
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Abstract API Phone Validation spend. The API is billed on a
+  freemium, request-metered model: a free tier (100 requests/month) and paid
+  monthly/annual plans whose price is driven by the included monthly request
+  volume. The effective unit of cost is a single validation request (one phone
+  number verified). Spend is bounded by the plan's monthly allowance rather than
+  pure pay-as-you-go overage, so cost control centers on right-sizing the plan
+  tier to expected verification volume and caching/deduplicating repeat lookups.
+  Per-plan dollar figures are not reconciled here.
+notes: >-
+  Abstract meters and bills each API product separately, so a Phone Validation
+  plan is a distinct line item from any other Abstract API product. Verify
+  current tier prices and included volumes on the Abstract API pricing page
+  during reconciliation. Per-lookup economics are modeled from published plan
+  volumes and prices, not from an invoice.
+sources:
+- https://www.abstractapi.com/api/phone-validation-api
+- https://www.abstractapi.com/pricing
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Abstract API
+serviceCategory: Data Validation and Enrichment
+billingModel:
+  pricingCategory: Subscription-Tiered (request-metered)
+  billingFrequency: Monthly or Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Abstract API Phone Validation
+  ServiceCategory: Data Validation and Enrichment
+  ProviderName: Abstract API
+  PublisherName: Abstract API
+  InvoiceIssuerName: Abstract API
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription-Tiered
+meters:
+- name: validation_requests
+  description: Phone number validation/verification requests, counted against the plan's monthly allowance.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+principles:
+- name: Visibility
+  description: Track monthly validation request counts against the plan allowance to avoid overage or forced tier upgrades.
+- name: Allocation
+  description: Attribute request volume to the product/team/form driving phone verification so cost maps to a cost center.
+- name: Optimization
+  description: Cache and deduplicate repeat lookups of the same number, validate only where needed (e.g. at signup), and right-size the plan tier to actual monthly volume.
+- name: Accountability
+  description: Assign an owner for the Abstract API account; review monthly usage against the plan allowance and reconcile the modeled tiers against the live pricing page.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
