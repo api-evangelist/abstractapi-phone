@@ -53,6 +53,8 @@ apis:
     method, and auth were live-confirmed 2026-07-12; response fields are grounded
     in Abstract API documentation and official SDKs.
 common:
+- type: AgenticAccess
+  url: agentic-access/abstractapi-phone-agentic-access.yml
 - type: DomainSecurity
   url: security/abstractapi-phone-domain-security.yml
 - type: Authentication
