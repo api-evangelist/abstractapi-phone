@@ -1,0 +1,141 @@
+openapi: 3.0.3
+info:
+  title: Abstract API Phone Validation API
+  description: 'The Abstract API Phone Number Validation & Verification API validates and verifies a phone number in a single request. Send a number (ideally in E.164 format) and the API returns whether the number is valid, its local and international formats, the country it belongs to, the registered location, the line type (mobile, landline, VoIP, etc.), and the carrier. It is a single GET endpoint authenticated with an API key passed as a query parameter. This is one product in the broader Abstract API suite (which also includes email validation, IP geolocation, and other data APIs), each with its own host and its own API key.
+
+    Endpoint path, HTTP method, and authentication were live-confirmed against the production host on 2026-07-12 (GET only; api_key query parameter; 401 "Invalid API key provided" on a bad key). The response field set is grounded in Abstract API''s published documentation and official SDKs; exact example values are illustrative.'
+  version: '1.0'
+  contact:
+    name: Abstract API
+    url: https://www.abstractapi.com
+  x-grounding: Endpoint/method/auth live-probed 2026-07-12 at https://phonevalidation.abstractapi.com/v1/. Response schema modeled from Abstract API docs and official SDK field lists.
+servers:
+- url: https://phonevalidation.abstractapi.com/v1
+  description: Abstract API Phone Validation production host
+security:
+- apiKeyQuery: []
+tags:
+- name: Phone Validation
+  description: Validate and verify a phone number and return carrier, line type, and location.
+paths:
+  /:
+    get:
+      operationId: validatePhone
+      tags:
+      - Phone Validation
+      summary: Validate and verify a phone number
+      description: Validates a single phone number and returns validity, local and international formats, country, registered location, line type, and carrier. The number should be supplied in E.164 format (for example +14152007986); an optional country hint can help interpret numbers supplied without a country code.
+      parameters:
+      - name: api_key
+        in: query
+        required: true
+        description: Your Abstract API Phone Validation API key.
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        description: The phone number to validate and verify, ideally in E.164 format (e.g. +14152007986).
+        schema:
+          type: string
+      - name: country
+        in: query
+        required: false
+        description: Optional ISO 3166-1 alpha-2 country code used to interpret a phone number submitted without an international dialing code.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Validation and verification result for the submitted phone number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PhoneValidationResult'
+        '204':
+          description: No content returned (for example, when the phone parameter is missing).
+        '401':
+          description: Missing or invalid API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: A required parameter is missing or malformed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit or monthly quota exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    PhoneFormat:
+      type: object
+      description: Local (national) and international representations of the number.
+      properties:
+        international:
+          type: string
+          description: The number in international E.164 format, e.g. +14152007986.
+        local:
+          type: string
+          description: The number in national/local format, e.g. (415) 200-7986.
+    PhoneValidationResult:
+      type: object
+      description: The validation and verification result. Field names and structure follow Abstract API's documented classic phone validation response.
+      properties:
+        phone:
+          type: string
+          description: The phone number that was submitted, normalized.
+        valid:
+          type: boolean
+          description: Whether the number is valid.
+        format:
+          $ref: '#/components/schemas/PhoneFormat'
+        country:
+          $ref: '#/components/schemas/PhoneCountry'
+        location:
+          type: string
+          description: Registered location (region/state/city) associated with the number.
+        type:
+          type: string
+          description: Line type of the number. Documented values include mobile, landline, voip, toll_free, personal, pager, and unknown.
+        carrier:
+          type: string
+          description: The carrier / telecom provider the number is registered with.
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: string
+            details:
+              type: object
+              nullable: true
+              additionalProperties: true
+    PhoneCountry:
+      type: object
+      description: The country the phone number is registered to.
+      properties:
+        code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code, e.g. US.
+        name:
+          type: string
+          description: Country name, e.g. United States.
+        prefix:
+          type: string
+          description: Country calling code / dialing prefix, e.g. +1.
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+      description: Abstract API authenticates by an API key passed as the `api_key` query parameter. Each Abstract API product (phone validation, email validation, etc.) has its own distinct key.
