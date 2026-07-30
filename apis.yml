@@ -14,7 +14,20 @@ description: >-
   Validation is one product in the broader Abstract API suite, which also
   includes email validation, IP geolocation, company enrichment, and other data
   APIs; each product has its own host and its own API key.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: open
+  trial: false
+  try_now: true
+  public: true
+  label: Freemium · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/abstractapi-phone.png
 tags:
 - Number Verification
 - Phone Validation
@@ -28,30 +41,20 @@ created: '2026-07-12'
 modified: '2026-07-12'
 specificationVersion: '0.19'
 apis:
-- aid: abstractapi-phone:abstractapi-phone-validation-api
-  name: Abstract API Phone Validation API
-  tags:
-  - Phone Validation
-  - Number Verification
-  - Carrier Lookup
-  - Line Type
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: abstractapi-phone:abstractapi-phone-phone-validation-api
+  name: Abstract API Phone Validation Phone Validation API
+  description: Validate and verify a phone number and return carrier, line type, and location.
   humanURL: https://www.abstractapi.com/api/phone-validation-api
   baseURL: https://phonevalidation.abstractapi.com/v1
+  tags:
+  - Phone Validation
   properties:
-  - url: https://www.abstractapi.com/api/phone-validation-api
-    type: Documentation
-  - url: https://www.abstractapi.com/api/phone-validation-api
-    type: APIReference
-  - url: openapi/abstractapi-phone-openapi.yml
-    type: OpenAPI
-  description: >-
-    Single GET endpoint that validates and verifies a phone number and returns
-    validity, local and international formats, country, registered location,
-    line type, and carrier. Authenticated with an api_key query parameter;
-    number is supplied via the phone query parameter in E.164 format. Endpoint,
-    method, and auth were live-confirmed 2026-07-12; response fields are grounded
-    in Abstract API documentation and official SDKs.
+  - type: OpenAPI
+    url: openapi/abstractapi-phone-phone-validation-api-openapi.yml
+  - type: Documentation
+    url: https://www.abstractapi.com/api/phone-validation-api
+  - type: APIReference
+    url: https://www.abstractapi.com/api/phone-validation-api
 common:
 - type: AgenticAccess
   url: agentic-access/abstractapi-phone-agentic-access.yml
