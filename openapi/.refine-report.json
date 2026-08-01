@@ -1,0 +1,14 @@
+{
+  "provider": "abstractapi-phone",
+  "sources": [
+    "abstractapi-phone-phone-validation-api-openapi.yml"
+  ],
+  "outputs": [
+    "abstractapi-phone-phone-validation-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
