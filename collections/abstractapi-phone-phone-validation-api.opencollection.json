@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Abstract API Phone Validation API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Phone Validation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate and verify a phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://phonevalidation.abstractapi.com/v1/",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Abstract API Phone Validation API key."
+              },
+              {
+                "name": "phone",
+                "value": "",
+                "type": "query",
+                "description": "The phone number to validate and verify, ideally in E.164 format (e.g. +14152007986)."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Optional ISO 3166-1 alpha-2 country code used to interpret a phone number submitted without an international dialing code."
+              }
+            ]
+          },
+          "docs": "Validates a single phone number and returns validity, local and international formats, country, registered location, line type, and carrier. The number should be supplied in E.164 format (for example +14152007986); an optional country hint can help interpret numbers supplied without a country code."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
