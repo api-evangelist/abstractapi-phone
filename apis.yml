@@ -39,7 +39,7 @@ tags:
 - Data Validation
 created: '2026-07-12'
 modified: '2026-07-12'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: abstractapi-phone:abstractapi-phone-phone-validation-api
   name: Abstract API Phone Validation Phone Validation API
