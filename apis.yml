@@ -14,6 +14,18 @@ description: >-
   Validation is one product in the broader Abstract API suite, which also
   includes email validation, IP geolocation, company enrichment, and other data
   APIs; each product has its own host and its own API key.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: open
