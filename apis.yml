@@ -91,3 +91,5 @@ common:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-parent: abstract-api
+x-relationship: product

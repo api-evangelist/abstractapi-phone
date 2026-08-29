@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Abstract API Phone Validation API
+  title: Abstract Phone Validation API
   description: 'The Abstract API Phone Number Validation & Verification API validates and verifies a phone number in a single request. Send a number (ideally in E.164 format) and the API returns whether the number is valid, its local and international formats, the country it belongs to, the registered location, the line type (mobile, landline, VoIP, etc.), and the carrier. It is a single GET endpoint authenticated with an API key passed as a query parameter. This is one product in the broader Abstract API suite (which also includes email validation, IP geolocation, and other data APIs), each with its own host and its own API key.
 
     Endpoint path, HTTP method, and authentication were live-confirmed against the production host on 2026-07-12 (GET only; api_key query parameter; 401 "Invalid API key provided" on a bad key). The response field set is grounded in Abstract API''s published documentation and official SDKs; exact example values are illustrative.'
@@ -73,16 +73,34 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    PhoneFormat:
+    PhoneCountry:
       type: object
-      description: Local (national) and international representations of the number.
+      description: The country the phone number is registered to.
       properties:
-        international:
+        code:
           type: string
-          description: The number in international E.164 format, e.g. +14152007986.
-        local:
+          description: ISO 3166-1 alpha-2 country code, e.g. US.
+        name:
           type: string
-          description: The number in national/local format, e.g. (415) 200-7986.
+          description: Country name, e.g. United States.
+        prefix:
+          type: string
+          description: Country calling code / dialing prefix, e.g. +1.
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: string
+            details:
+              type:
+              - object
+              - 'null'
+              additionalProperties: true
     PhoneValidationResult:
       type: object
       description: The validation and verification result. Field names and structure follow Abstract API's documented classic phone validation response.
@@ -106,33 +124,16 @@ components:
         carrier:
           type: string
           description: The carrier / telecom provider the number is registered with.
-    Error:
+    PhoneFormat:
       type: object
+      description: Local (national) and international representations of the number.
       properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            code:
-              type: string
-            details:
-              type: object
-              nullable: true
-              additionalProperties: true
-    PhoneCountry:
-      type: object
-      description: The country the phone number is registered to.
-      properties:
-        code:
+        international:
           type: string
-          description: ISO 3166-1 alpha-2 country code, e.g. US.
-        name:
+          description: The number in international E.164 format, e.g. +14152007986.
+        local:
           type: string
-          description: Country name, e.g. United States.
-        prefix:
-          type: string
-          description: Country calling code / dialing prefix, e.g. +1.
+          description: The number in national/local format, e.g. (415) 200-7986.
   securitySchemes:
     apiKeyQuery:
       type: apiKey
