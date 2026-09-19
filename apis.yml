@@ -43,6 +43,15 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/abstractap
 tags:
 - Number Verification
 - Phone Validation
+- Phone Numbers
+- Phone Number Lookup
+- Verification
+- Carrier Lookup
+- Line Type
+- Data Validation
+tags_raw:
+- Number Verification
+- Phone Validation
 - Phone Number
 - Phone Number Lookup
 - Verification
