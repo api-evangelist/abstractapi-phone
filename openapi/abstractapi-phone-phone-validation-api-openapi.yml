@@ -84,16 +84,6 @@ components:
         prefix:
           type: string
           description: Country calling code / dialing prefix, e.g. +1.
-    PhoneFormat:
-      type: object
-      description: Local (national) and international representations of the number.
-      properties:
-        international:
-          type: string
-          description: The number in international E.164 format, e.g. +14152007986.
-        local:
-          type: string
-          description: The number in national/local format, e.g. (415) 200-7986.
     Error:
       type: object
       properties:
@@ -109,6 +99,16 @@ components:
               - object
               - 'null'
               additionalProperties: true
+    PhoneFormat:
+      type: object
+      description: Local (national) and international representations of the number.
+      properties:
+        international:
+          type: string
+          description: The number in international E.164 format, e.g. +14152007986.
+        local:
+          type: string
+          description: The number in national/local format, e.g. (415) 200-7986.
     PhoneValidationResult:
       type: object
       description: The validation and verification result. Field names and structure follow Abstract API's documented classic phone validation response.
