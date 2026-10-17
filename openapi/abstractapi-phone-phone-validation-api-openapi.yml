@@ -71,19 +71,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    PhoneCountry:
-      type: object
-      description: The country the phone number is registered to.
-      properties:
-        code:
-          type: string
-          description: ISO 3166-1 alpha-2 country code, e.g. US.
-        name:
-          type: string
-          description: Country name, e.g. United States.
-        prefix:
-          type: string
-          description: Country calling code / dialing prefix, e.g. +1.
     Error:
       type: object
       properties:
@@ -99,16 +86,6 @@ components:
               - object
               - 'null'
               additionalProperties: true
-    PhoneFormat:
-      type: object
-      description: Local (national) and international representations of the number.
-      properties:
-        international:
-          type: string
-          description: The number in international E.164 format, e.g. +14152007986.
-        local:
-          type: string
-          description: The number in national/local format, e.g. (415) 200-7986.
     PhoneValidationResult:
       type: object
       description: The validation and verification result. Field names and structure follow Abstract API's documented classic phone validation response.
@@ -132,6 +109,29 @@ components:
         carrier:
           type: string
           description: The carrier / telecom provider the number is registered with.
+    PhoneFormat:
+      type: object
+      description: Local (national) and international representations of the number.
+      properties:
+        international:
+          type: string
+          description: The number in international E.164 format, e.g. +14152007986.
+        local:
+          type: string
+          description: The number in national/local format, e.g. (415) 200-7986.
+    PhoneCountry:
+      type: object
+      description: The country the phone number is registered to.
+      properties:
+        code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code, e.g. US.
+        name:
+          type: string
+          description: Country name, e.g. United States.
+        prefix:
+          type: string
+          description: Country calling code / dialing prefix, e.g. +1.
   securitySchemes:
     apiKeyQuery:
       type: apiKey
