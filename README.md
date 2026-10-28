@@ -1,4 +1,4 @@
-# Abstract API Phone Validation (abstractapi-phone)
+# Abstract API Phone Validation
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,90 +64,117 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Abstract API's Phone Number Validation & Verification API validates and verifies a phone number in a single REST request. Given a number (ideally in E.164 format) it returns whether the number is valid, its local and international formats, the country, the registered location, the line type (mobile, landline, VoIP, and more), and the carrier - useful for form validation, lead scoring, fraud prevention, and cleaning phone data.
+Abstract API's Phone Number Validation & Verification API validates and verifies a phone number in a single REST request. Given a number (ideally in E.164 format) it returns whether the number is valid, its local and international formats, the country, the registered location, the line type (mobile, landline, VoIP, and more), and the carrier - useful for form validation, lead scoring, fraud prevention, and cleaning phone data. The endpoint is a single authenticated GET call with the API key passed as a query parameter, and Abstract offers a free tier alongside paid plans. Phone Validation is one product in the broader Abstract API suite, which also includes email validation, IP geolocation, company enrichment, and other data APIs; each product has its own host and its own API key.
 
-**Access model:** Abstract API offers a **free tier** (100 requests/month, no credit card required) plus **paid monthly/annual plans** scaled by request volume. Every request is authenticated with an API key passed as the `api_key` query parameter, and the free and paid tiers share a **3 requests/second** throughput limit. Phone Validation is one product in the broader Abstract API suite (email validation, IP geolocation, company enrichment, and more); each product has its own host and its own API key.
+**Areas:** Number Verification · Phone Validation · Phone Numbers · Phone Number Lookup · Verification · Carrier Lookup · Line Type · Data Validation
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/abstractapi-phone/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/abstractapi-phone/refs/heads/main/apis.yml)
+## Abstract API Phone Validation on APIs.io
 
-## Tags
+Everything profiled for Abstract API Phone Validation is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/abstractapi-phone/](https://apis.io/providers/abstractapi-phone/)** — or go straight to one of the APIs or properties below.
 
-- Number Verification
-- Phone Validation
-- Phone Number
-- Phone Number Lookup
-- Verification
-- Carrier Lookup
-- Line Type
-- Data Validation
+### APIs (1)
 
-## Timestamps
+- [Abstract API Phone Validation Phone Validation API](https://apis.io/apis/abstractapi-phone/abstractapi-phone-phone-validation-api/) — Validate and verify a phone number and return carrier, line type, and location.
 
-- **Created:** 2026-07-12
-- **Modified:** 2026-07-12
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Abstract API Phone Validation API
+#### Agentic access (1)
 
-Single GET endpoint that validates and verifies a phone number and returns validity, local and international formats, country, registered location, line type, and carrier. Authenticated with an `api_key` query parameter; the number is supplied via the `phone` query parameter in E.164 format (for example `+14152007986`).
+Which operations an agent can call, which act, and which need a human in the loop.
 
-```
-GET https://phonevalidation.abstractapi.com/v1/?api_key=YOUR_API_KEY&phone=+14152007986
-```
+- [Abstractapi Phone Agentic Access](https://apis.io/agentic-access/abstractapi-phone/abstractapi-phone-agentic-access/)
 
-The endpoint path, HTTP method (GET only), and API-key-by-query-parameter authentication were **live-confirmed on 2026-07-12** against the production host. The response field set below is grounded in Abstract API's published documentation and official SDKs; example values are illustrative.
+#### Collections (2)
 
-- **Human URL:** [https://www.abstractapi.com/api/phone-validation-api](https://www.abstractapi.com/api/phone-validation-api)
-- **Base URL:** `https://phonevalidation.abstractapi.com/v1`
+Postman and Open Collection request collections.
 
-#### Tags
+- [Abstract API Phone Validation](https://apis.io/collections/abstractapi-phone/open-abstractapi-phone/)
+- [Abstract API Phone Validation API](https://apis.io/collections/abstractapi-phone/open-abstractapi-phone-phone-validation-api/)
 
-- Phone Validation
-- Number Verification
-- Carrier Lookup
-- Line Type
+#### Security (2)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://www.abstractapi.com/api/phone-validation-api)
-- [API Reference](https://www.abstractapi.com/api/phone-validation-api)
-- [OpenAPI](openapi/abstractapi-phone-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/abstractapi-phone.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/abstractapi-phone.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Abstractapi Phone Authentication](https://apis.io/security/abstractapi-phone/abstractapi-phone-authentication/)
+- [Abstractapi Phone Domain Security](https://apis.io/security/abstractapi-phone/abstractapi-phone-domain-security/)
 
-#### Example Response
+#### Plans and pricing (1)
 
-```json
-{
-  "phone": "14152007986",
-  "valid": true,
-  "format": {
-    "international": "+14152007986",
-    "local": "(415) 200-7986"
-  },
-  "country": {
-    "code": "US",
-    "name": "United States",
-    "prefix": "+1"
-  },
-  "location": "California",
-  "type": "mobile",
-  "carrier": "T-Mobile USA, Inc."
-}
-```
+Published plans, tiers and prices.
 
-## Common Properties
+- [Abstractapi Phone Plans Pricing](https://apis.io/plans/abstractapi-phone/abstractapi-phone-plans-pricing/)
 
-- [GitHub Organization](https://github.com/abstractapi)
-- [LinkedIn](https://www.linkedin.com/company/abstract-api)
+#### Rate limits (1)
+
+Published request limits.
+
+- [Abstractapi Phone Rate Limits](https://apis.io/rate-limits/abstractapi-phone/abstractapi-phone-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Abstractapi Phone Finops](https://apis.io/finops/abstractapi-phone/abstractapi-phone-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.abstractapi.com)
 - [Documentation](https://www.abstractapi.com/api/phone-validation-api)
-- [Plans](plans/abstractapi-phone-plans-pricing.yml)
-- [Rate Limits](rate-limits/abstractapi-phone-rate-limits.yml)
-- [Fin Ops](finops/abstractapi-phone-finops.yml)
+- [GitHub](https://github.com/abstractapi)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 26.1** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 50.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 7.9 |
+
+**Agent readiness 33.2** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.0** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/abstractapi-phone/](https://apis.io/providers/abstractapi-phone/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Abstract API Phone Validation: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/abstractapi-phone/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
